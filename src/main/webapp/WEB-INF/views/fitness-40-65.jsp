@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Plan (25-40)</title>
+    <title>Fitness Plan (40-65)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Fitness Plan (25-40)</h1>
+        <h1>Fitness Plan (40-65)</h1>
         <h2>Diet Plan</h2>
         <ul>
             <li><strong>Breakfast:</strong> Greek yogurt with mixed berries and granola.</li>

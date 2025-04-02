@@ -53,47 +53,41 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
+    
+   
 
-    // Determine which page to display based on the Customer's details
-    public String determinePage(Customer customer) {
-        double weight = customer.getWeight();
-        double height = customer.getHeight();
-        String specialization = customer.getSpecialization().toLowerCase();
-        int age = customer.getAge(); // Assuming age is part of the Customer object
-
-        if (weight == 65 && height == 172 && "body gain".equals(specialization)) {
-            if (age >= 18 && age <= 25) {
-                return "/views/body-gain-18-25.html";
-            } else if (age > 25 && age <= 40) {
-                return "/views/body-gain-25-40.html";
-            } else if (age > 40 && age <= 65) {
-                return "/views/body-gain-40-65.html";
-            }
-        } else if ("weight loss".equals(specialization)) {
-            if (age >= 18 && age <= 25) {
-                return "/views/weight-loss-18-25.html";
-            } else if (age > 25 && age <= 40) {
-                return "/views/weight-loss-25-40.html";
-            } else if (age > 40 && age <= 65) {
-                return "/views/weight-loss-40-65.html";
-            }
-        } else if ("fitness".equals(specialization)) {
-            if (age >= 18 && age <= 25) {
-                return "/views/fitness-18-25.html";
-            } else if (age > 25 && age <= 40) {
-                return "/views/fitness-25-40.html";
-            } else if (age > 40 && age <= 65) {
-                return "/views/fitness-40-60.html";
-            }
+	@Override
+	public String determinePage(Integer age, Double weight, Double height, String specialization) {
+		// TODO Auto-generated method stub
+		if (age == null || weight == null || height == null || specialization == null) {
+            return "login"; // Default fallback
         }
 
-        // Fallback based on weight
-        if (weight < 50) {
-            return "/pages/underweight.html";
-        } else if (weight > 80) {
-            return "/pages/overweight.html";
+        double bmi = weight / ((height / 100.0) * (height / 100.0));
+
+        specialization = specialization.toLowerCase();
+        String basePath = specialization.replace(" ", "-");
+
+        if (age >= 18 && age <= 25) {
+            if (bmi < 18.5) return basePath + "(18-25-underweight)";
+            else if (bmi <= 24.9) return basePath + "(18-25-normal)";
+            else return basePath + "(18-25-overweight)";
+        } else if (age > 25 && age <= 40) {
+            if (bmi < 18.5) return basePath + "(25-40-underweight)";
+            else if (bmi <= 24.9) return basePath + "(25-40-normal)";
+            else return basePath + "(25-40-overweight)";
+        } else if (age > 40 && age <= 65) {
+            if (bmi < 18.5) return basePath + "(40-65-underweight)";
+            else if (bmi <= 24.9) return basePath + "(40-65-normal)";
+            else return basePath + "(40-65-overweight)";
         }
 
-        return "/pages/general.html"; // Default page
-    }
+        return "login"; // Fallback
+	}
+
+	
+    
+    
+
+   
 }

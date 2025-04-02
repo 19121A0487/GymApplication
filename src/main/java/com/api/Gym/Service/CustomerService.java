@@ -9,5 +9,5 @@ public interface CustomerService {
     Customer getCustomerById(Long id);
     Customer updateCustomerDetails(Long id, Customer customer);
     void deleteById(Long id);
-    String determinePage(Customer customer);
+    String determinePage(Integer age, Double weight, Double height, String specialization);
 }

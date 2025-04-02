@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.api.Gym.Entity.Customer;
 import com.api.Gym.Service.CustomerService;
@@ -59,13 +61,34 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
     
- // Determine which page should be displayed based on user details
-    @PostMapping("/determine-page")
-    public ResponseEntity<String> determinePage(@RequestBody Customer customer) {
-        String pageUrl = customerService.determinePage(customer);
-        return ResponseEntity.ok(pageUrl);
-    }
 
     
+    @GetMapping("/determine-page")
+    public ModelAndView determinePage(
+            @RequestParam(value = "age", required = false) Integer age,
+            @RequestParam(value = "weight", required = false) Double weight,
+            @RequestParam(value = "height", required = false) Double height,
+            @RequestParam(value = "specialization", required = false) String specialization) {
+
+        System.out.println("Received details - Age: " + age + ", Weight: " + weight + ", Height: " + height + ", Specialization: " + specialization);
+
+        String viewName = customerService.determinePage(age, weight, height, specialization);
+        
+        ModelAndView modelAndView = new ModelAndView(viewName);
+        modelAndView.addObject("age", age);
+        modelAndView.addObject("weight", weight);
+        modelAndView.addObject("height", height);
+        modelAndView.addObject("specialization", specialization);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/some-endpoint/{id}")
+    public ResponseEntity<?> someMethod(@PathVariable String id) {
+        System.out.println("Received id: " + id);
+        // method logic here
+        return ResponseEntity.ok("ID received: " + id);
+    }
+
 
 }
