@@ -1,11 +1,9 @@
-package com.api.Gym.Entity;
+package com.api.Gym.DTO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
+
+import com.api.Gym.Entity.Customer;
+
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -14,27 +12,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
 @Data
-@Entity
-public class Customer {
-	
-	
-	 @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private Trainer trainer;
-	 
-	 public Trainer getTrainer() {
-	        return trainer;
-	    }
+public class CustomerDTO {
 
-	    public void setTrainer(Trainer trainer) {
-	        this.trainer = trainer;
-	    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     
     @NotBlank(message = "First name is required")
     @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
@@ -54,10 +36,9 @@ public class Customer {
 
     @DecimalMin(value = "30.0", message = "Weight must be at least 30 kg")
     @DecimalMax(value = "200.0", message = "Weight cannot be more than 200 kg")
-    private Double weight;  // Use `Double` instead of `double` to avoid validation issues
+    private Double weight;  
 
     @NotBlank(message = "Gender is required")
-//    @Pattern(regexp = "^(Male|Female|Not to be)$", message = "Gender must be either 'Male', 'Female', or 'Not to be'")
     private String gender;
 
     @Min(value = 18, message = "Age must be at least 18")
@@ -65,13 +46,35 @@ public class Customer {
     private int age;
 
     @Min(value = 50, message = "Height must be at least 50 cm")
-    @Max(value = 200, message = "Height cannot be more than 250 cm")
+    @Max(value = 250, message = "Height cannot be more than 250 cm")
     private double height;
 
     @NotBlank(message = "Specialization is required")
     @Size(min = 3, message = "Specialization must be at least 3 characters")
     private String specialization;
+
     
+   
     private String trainerName;
-    // Getters and Setters
+    
+    public CustomerDTO(Customer customer) {
+        this.id = customer.getId();
+        this.firstName = customer.getFirstName();
+        this.lastName = customer.getLastName();
+        this.address = customer.getAddress();
+        this.phone = customer.getPhone();
+        this.weight = customer.getWeight();
+        this.gender = customer.getGender();
+        this.age = customer.getAge();
+        this.height = customer.getHeight();
+        this.specialization = customer.getSpecialization();
+        
+        // ✅ Handle null trainer case
+        this.trainerName = (customer.getTrainer() != null) ? customer.getTrainer().getFirstName() : "Not Assigned";
+    }
+    public CustomerDTO() {
+    	
+    }
 }
+
+

@@ -37,7 +37,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/login", "/api/auth/register","/api/customers/**").permitAll()
                 .requestMatchers("/api/customers/get/**", "/api/customers/determine-page").permitAll() // Allow these
-
+                .requestMatchers("/api/trainers/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()

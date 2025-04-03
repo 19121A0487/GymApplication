@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.api.Gym.Entity.Customer;
+import com.api.Gym.DTO.CustomerDTO;
 import com.api.Gym.Service.CustomerService;
 //@CrossOrigin(origins = "http://localhost:3000") 
 @RestController
@@ -27,30 +27,30 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/add")
-    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
-        Customer savedCustomer = customerService.saveCustomer(customer);
+    public ResponseEntity<CustomerDTO> addCustomer(@RequestBody CustomerDTO customer) {
+        CustomerDTO savedCustomer = customerService.saveCustomer(customer);
         return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
     }
 
 
     // Get all Customers
     @GetMapping("/get")
-    public ResponseEntity<List<Customer>> getAllCustomers() {
-        List<Customer> customers = customerService.getAllCustomers();
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
+        List<CustomerDTO> customers = customerService.getAllCustomers();
         return ResponseEntity.ok(customers);
     }
 
     // Get a Customer by ID
     @GetMapping("/get/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
-        Customer customer = customerService.getCustomerById(id);
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id) {
+        CustomerDTO customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
     }
 
     // Update a Customer by ID
     @PutMapping("/update/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        Customer updatedCustomer = customerService.updateCustomerDetails(id, customer);
+    public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customer) {
+        CustomerDTO updatedCustomer = customerService.updateCustomerDetails(id, customer);
         return ResponseEntity.ok(updatedCustomer);
     }
 
@@ -82,7 +82,12 @@ public class CustomerController {
 
         return modelAndView;
     }
-
+    
+    @PutMapping("/{customerId}/assign-trainer/{specialization}")
+    public CustomerDTO assignTrainer(@PathVariable Long customerId, @PathVariable String specialization) {
+        return customerService.assignTrainerToCustomer(customerId, specialization);
+    }
+    
     @GetMapping("/some-endpoint/{id}")
     public ResponseEntity<?> someMethod(@PathVariable String id) {
         System.out.println("Received id: " + id);
