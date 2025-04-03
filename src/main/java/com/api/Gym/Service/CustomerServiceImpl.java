@@ -37,8 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
 
         if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
-            customer.setFirstName(customer.getFirstName());
+            customer.setFirstName(customerDetails.getFirstName());
             customer.setLastName(customerDetails.getLastName());
+            customer.setPhone(customerDetails.getPhone());
             customer.setAge(customerDetails.getAge());
             customer.setWeight(customerDetails.getWeight());
             customer.setHeight(customerDetails.getHeight());

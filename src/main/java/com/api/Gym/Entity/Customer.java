@@ -9,6 +9,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 @Data
@@ -33,7 +34,7 @@ public class Customer {
     private String address;
 
     @NotBlank(message = "Phone number is required")
-//    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String phone;
 
     @DecimalMin(value = "30.0", message = "Weight must be at least 30 kg")
