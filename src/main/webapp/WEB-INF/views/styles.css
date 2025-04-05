@@ -1,82 +1,53 @@
-/* General Styles */
-@charset "ISO-8859-1";
 body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
     color: #333;
 }
 
-/* Container Styling */
-.container {
-    background: #ffffff;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
 }
 
-/* Headings */
-h1, h2 {
-    color: #2c3e50;
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
     text-align: center;
 }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 15px;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-h2 {
-    font-size: 1.6em;
-    margin-top: 20px;
-    color: #2980b9;
+tr:hover {
+    background-color: #f1f1f1;
 }
 
-/* List Styling */
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    background: #ecf0f1;
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 6px;
-    transition: all 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    font-size: 1.1em;
-}
-
-ul li:hover {
-    background: #dfe6e9;
-    transform: scale(1.02);
-}
-
-strong {
-    color: #2c3e50;
-    margin-right: 8px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-    h1 {
-        font-size: 1.8em;
-    }
-    h2 {
-        font-size: 1.4em;
-    }
-    ul li {
-        font-size: 1em;
-    }
+/* Center text in headers */
+th, td {
+    text-align: center;
 }
