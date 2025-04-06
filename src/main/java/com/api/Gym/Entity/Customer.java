@@ -73,5 +73,15 @@ public class Customer {
     private String specialization;
     
     private String trainerName;
+    
+    @NotBlank(message = "Training period is required")
+    private int trainingPeriod;
+    
+    private Double basePrice;
+
+    private String couponCode;
+
+    private Double finalPrice;
+    
     // Getters and Setters
 }

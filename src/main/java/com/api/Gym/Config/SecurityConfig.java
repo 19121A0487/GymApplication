@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/login", "/api/auth/register","/api/customers/**").permitAll()
                 .requestMatchers("/api/customers/get/**", "/api/customers/determine-page").permitAll() // Allow these
                 .requestMatchers("/api/trainers/**").permitAll()
+                .requestMatchers("/api/prices/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()

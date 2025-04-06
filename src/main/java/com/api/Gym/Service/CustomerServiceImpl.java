@@ -60,7 +60,9 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setAge(customerDTO.getAge());
         existingCustomer.setHeight(customerDTO.getHeight());
         existingCustomer.setSpecialization(customerDTO.getSpecialization());  // ✅ Specialization updated
-
+        existingCustomer.setTrainingPeriod(customerDTO.getTrainingPeriod());
+        
+        
         // 🔹 If specialization changes, assign a new trainer
         if (specializationChanged) {
             Trainer assignedTrainer = findTrainerWithLeastCustomers(customerDTO.getSpecialization());
@@ -136,6 +138,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(() -> new RuntimeException("Error finding trainer"));
     }
     
+    
     private CustomerDTO mapToDTO(Customer customer) {
         CustomerDTO dto = new CustomerDTO();
         dto.setId(customer.getId());
@@ -146,10 +149,14 @@ public class CustomerServiceImpl implements CustomerService {
         dto.setWeight(customer.getWeight());
         dto.setHeight(customer.getHeight());
         dto.setSpecialization(customer.getSpecialization());
+        dto.setTrainingPeriod(customer.getTrainingPeriod());
         
         // Add missing fields
         dto.setAddress(customer.getAddress()); // Fix: Set address
         dto.setGender(customer.getGender());   // Fix: Set gender
+        dto.setBasePrice(customer.getBasePrice());
+        dto.setCouponCode(customer.getCouponCode());
+        dto.setFinalPrice(customer.getFinalPrice());
         dto.setTrainerName(customer.getTrainer() != null ? customer.getTrainer().getFirstName() : null); // Fix: Set trainer name
 		return dto;
 
@@ -165,6 +172,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setWeight(dto.getWeight());
         customer.setHeight(dto.getHeight());
         customer.setSpecialization(dto.getSpecialization());
+        customer.setTrainingPeriod(dto.getTrainingPeriod());
+        customer.setBasePrice(dto.getBasePrice());
+        customer.setCouponCode(dto.getCouponCode());
+        customer.setFinalPrice(dto.getFinalPrice());
 
         // Add missing fields
         customer.setAddress(dto.getAddress()); // Fix: Set address

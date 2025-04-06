@@ -2,6 +2,8 @@ package com.api.Gym.DTO;
 
 
 
+import org.aspectj.apache.bcel.classfile.NestHost;
+
 import com.api.Gym.Entity.Customer;
 
 import jakarta.validation.constraints.DecimalMax;
@@ -57,6 +59,15 @@ public class CustomerDTO {
    
     private String trainerName;
     
+    @NotBlank(message = "Training period is required")
+    private int trainingPeriod;
+    
+    private Double basePrice;
+
+    private String couponCode;
+
+    private Double finalPrice;
+    
     public CustomerDTO(Customer customer) {
         this.id = customer.getId();
         this.firstName = customer.getFirstName();
@@ -68,6 +79,11 @@ public class CustomerDTO {
         this.age = customer.getAge();
         this.height = customer.getHeight();
         this.specialization = customer.getSpecialization();
+        this.trainingPeriod=customer.getTrainingPeriod();
+        this.basePrice=customer.getBasePrice();
+        this.couponCode=customer.getCouponCode();
+        this.finalPrice=customer.getFinalPrice();
+        
         
         // ✅ Handle null trainer case
         this.trainerName = (customer.getTrainer() != null) ? customer.getTrainer().getFirstName() : "Not Assigned";
