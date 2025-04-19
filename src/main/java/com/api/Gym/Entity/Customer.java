@@ -1,11 +1,14 @@
 package com.api.Gym.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -16,6 +19,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 @Data
 @Entity
+@Table(name="customers")
 public class Customer {
 	
 	
@@ -72,16 +76,14 @@ public class Customer {
     @Size(min = 3, message = "Specialization must be at least 3 characters")
     private String specialization;
     
-    private String trainerName;
+    
     
     @NotBlank(message = "Training period is required")
     private int trainingPeriod;
     
-    private Double basePrice;
+    
 
-    private String couponCode;
-
-    private Double finalPrice;
+    
     
     // Getters and Setters
 }

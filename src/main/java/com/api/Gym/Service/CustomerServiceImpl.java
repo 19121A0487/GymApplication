@@ -154,9 +154,7 @@ public class CustomerServiceImpl implements CustomerService {
         // Add missing fields
         dto.setAddress(customer.getAddress()); // Fix: Set address
         dto.setGender(customer.getGender());   // Fix: Set gender
-        dto.setBasePrice(customer.getBasePrice());
-        dto.setCouponCode(customer.getCouponCode());
-        dto.setFinalPrice(customer.getFinalPrice());
+        
         dto.setTrainerName(customer.getTrainer() != null ? customer.getTrainer().getFirstName() : null); // Fix: Set trainer name
 		return dto;
 
@@ -173,9 +171,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setHeight(dto.getHeight());
         customer.setSpecialization(dto.getSpecialization());
         customer.setTrainingPeriod(dto.getTrainingPeriod());
-        customer.setBasePrice(dto.getBasePrice());
-        customer.setCouponCode(dto.getCouponCode());
-        customer.setFinalPrice(dto.getFinalPrice());
+        
 
         // Add missing fields
         customer.setAddress(dto.getAddress()); // Fix: Set address

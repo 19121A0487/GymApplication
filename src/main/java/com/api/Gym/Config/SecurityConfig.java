@@ -35,8 +35,8 @@ public class SecurityConfig {
         http
             .cors().and().csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/login", "/api/auth/register","/api/customers/**").permitAll()
-                .requestMatchers("/api/customers/get/**", "/api/customers/determine-page").permitAll() // Allow these
+                .requestMatchers("/api/auth/login", "/api/auth/register").permitAll()
+                .requestMatchers("/api/customers/**").permitAll() // Allow these
                 .requestMatchers("/api/trainers/**").permitAll()
                 .requestMatchers("/api/prices/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")

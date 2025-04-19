@@ -62,13 +62,13 @@ public class CustomerDTO {
     @NotBlank(message = "Training period is required")
     private int trainingPeriod;
     
-    private Double basePrice;
-
-    private String couponCode;
-
-    private Double finalPrice;
+    
+    
+    
     
     public CustomerDTO(Customer customer) {
+    	
+    	
         this.id = customer.getId();
         this.firstName = customer.getFirstName();
         this.lastName = customer.getLastName();
@@ -80,9 +80,7 @@ public class CustomerDTO {
         this.height = customer.getHeight();
         this.specialization = customer.getSpecialization();
         this.trainingPeriod=customer.getTrainingPeriod();
-        this.basePrice=customer.getBasePrice();
-        this.couponCode=customer.getCouponCode();
-        this.finalPrice=customer.getFinalPrice();
+        
         
         
         // ✅ Handle null trainer case
