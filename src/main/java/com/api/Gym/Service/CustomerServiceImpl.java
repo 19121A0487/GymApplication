@@ -61,6 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setHeight(customerDTO.getHeight());
         existingCustomer.setSpecialization(customerDTO.getSpecialization());  // ✅ Specialization updated
         existingCustomer.setTrainingPeriod(customerDTO.getTrainingPeriod());
+        existingCustomer.setAddress(customerDTO.getAddress());
         
         
         // 🔹 If specialization changes, assign a new trainer
@@ -171,6 +172,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setHeight(dto.getHeight());
         customer.setSpecialization(dto.getSpecialization());
         customer.setTrainingPeriod(dto.getTrainingPeriod());
+//        customer.setAddress(dto.getTrainingPeriod());
         
 
         // Add missing fields
